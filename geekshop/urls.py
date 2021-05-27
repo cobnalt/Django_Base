@@ -18,8 +18,8 @@ from django.urls import path, include
 import geekshop.views as geekshop
 
 urlpatterns = [
-    path('', geekshop.main),
+    path('', geekshop.main, name='main'),
     path('products/', include('mainapp.urls')),
-    path('contact/', geekshop.contact),
+    path('contact/', geekshop.contact, name='contact'),
     path('admin/', admin.site.urls),
 ]
