@@ -8,7 +8,7 @@ class ProductCategory(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name='обновлено')
 
     def __str__(self):
-        return self.name
+        return f'{self.pk} -- {self.name}'
 
     class Meta:
         verbose_name = 'Категория'

@@ -1,0 +1,46 @@
+[
+  {
+    "category": 1,
+    "name": "Отличный стул 1",
+    "image": "product_images/product-1.jpg",
+    "short_desc": "Расположитесь комфортно.",
+    "description": "Расположитесь комфортно.",
+    "price": "2000.56",
+    "quantity": 20,
+    "created": "2021-05-30T14:04:50.208Z",
+    "updated": "2021-05-30T14:04:50.208Z"
+  },
+  {
+    "category": 2,
+    "name": "Отличный стул 2",
+    "image": "product_images/product-2.jpg",
+    "short_desc": "Расположитесь комфортно.",
+    "description": "Расположитесь комфортно.",
+    "price": "5210.32",
+    "quantity": 30,
+    "created": "2021-05-30T14:05:43.740Z",
+    "updated": "2021-05-30T14:05:43.741Z"
+  },
+  {
+    "category": 3,
+    "name": "Отличный стул 3",
+    "image": "product_images/product-3.jpg",
+    "short_desc": "Расположитесь комфортно.",
+    "description": "Расположитесь комфортно.",
+    "price": "3452.21",
+    "quantity": 54,
+    "created": "2021-05-30T14:06:18.457Z",
+    "updated": "2021-05-30T14:06:18.457Z"
+  },
+  {
+    "category": 4,
+    "name": "Отличный стул 4",
+    "image": "product_images/product-4.jpg",
+    "short_desc": "Расположитесь комфортно.",
+    "description": "Расположитесь комфортно.",
+    "price": "5674.22",
+    "quantity": 33,
+    "created": "2021-05-30T14:06:47.564Z",
+    "updated": "2021-05-30T14:06:47.564Z"
+  }
+]
