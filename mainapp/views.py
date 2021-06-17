@@ -1,8 +1,8 @@
-import json
 import random
 
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from basketapp.models import Basket
 from mainapp.models import ProductCategory, Product
@@ -22,7 +22,7 @@ def get_basket(user):
 
 
 def get_hot_product():
-    products = Product.objects.all()
+    products = Product.objects.filter(is_active=True, category__is_active=True)
 
     return random.sample(list(products), 1)[0]
 
@@ -33,10 +33,10 @@ def get_same_products(hot_product):
     return same_products
 
 
-def products(request, pk=None):
+def products(request, pk=None, page=1):
 
     title = 'каталог/продукты'
-    links_menu = ProductCategory.objects.all()
+    links_menu = ProductCategory.objects.filter(is_active=True)
     basket = get_basket(request.user)
 
     hot_product = get_hot_product()
@@ -44,17 +44,29 @@ def products(request, pk=None):
 
     if pk is not None:
         if pk == 0:
-            products = Product.objects.all().order_by('price')
-            category = {'name': 'все'}
+            category = {
+                'pk': 0,
+                'name': 'все'
+            }
+            products = Product.objects.filter(is_active=True, category__is_active=True).order_by('price')
         else:
             category = get_object_or_404(ProductCategory, pk=pk)
-            products = Product.objects.filter(category__pk=pk).order_by('price')
+            products = Product.objects.filter(category__pk=pk, is_active=True,
+                                              category__is_active=True).order_by('price')
+
+        paginator = Paginator(products, 2)
+        try:
+            products_paginator = paginator.page(page)
+        except PageNotAnInteger:
+            products_paginator = paginator.page(1)
+        except EmptyPage:
+            products_paginator = paginator.page(paginator.num_pages)
 
         context = {
             'main_menu': main_menu,
             'links_menu': links_menu,
             'category': category,
-            'products': products,
+            'products': products_paginator,
             'title': title,
             'basket': basket,
         }
