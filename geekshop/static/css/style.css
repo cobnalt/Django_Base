@@ -1086,3 +1086,6 @@ td:first-child {
 .basket_record input {
     width: 50px;
 }
+.category_record.not_active {
+    opacity: 0.5;
+}
