@@ -1,7 +1,7 @@
 <div class="header clearfix">
     <a href="{% url 'main' %}" class="logo"></a>
     <ul class="menu">
-        {% for link in links_menu %}
+        {% for link in main_menu %}
         <li><a href="{% url link.href %}" class="{% if request.resolver_match.view_name == link.href %} active
 		{% endif %}">{{ link.name }}</a></li>
         {% endfor %}
@@ -21,5 +21,9 @@
         </li>
     </ul>
     <a href="#" class="search"></a>
-    <a href="#" class="basket"></a>
+    <a href="{% url 'basket:view' %}" class="basket">
+    <span>
+        {% if basket %} {{ basket|length }} {% endif %}
+    </span>
+</a>
 </div>
