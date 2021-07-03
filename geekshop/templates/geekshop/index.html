@@ -12,11 +12,11 @@
 			<div class="tab-content">
 				{% for product in main_products %}
 				<div class="block">
-					<a href="#"><img src="{% static product.src %}" alt="">
+					<a href="#"><img src="/media/{{ product.image }}" alt="{{ product.short_desc }}">
 						<div class="text">
 							<img src="{% static '/img/icon-hover.png' %}" alt="img">
-							<h4>{{ product.h4 }}</h4>
-							<p>{{ product.p }}</p>
+							<h4>{{ product.name }}</h4>
+							<p>{{ product.short_desc }}</p>
 						</div> 
 					</a>
 				</div>
