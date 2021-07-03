@@ -19,7 +19,7 @@ main_products = [
 
 def main(request):
     title = 'главная'
-    main_products_base = Product.objects.all()
+    main_products_base = Product.objects.all()[:4]
     basket = []
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)

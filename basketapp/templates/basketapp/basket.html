@@ -6,33 +6,34 @@
     {% include 'geekshop/includes/inc_menu.html' %}
 </div>
 {% endblock slider %}
+
+{% block style %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% endblock %}
+
+{% block js %}
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous">
+    </script>
+    <script src="{% static 'js/basket_scripts.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 
 {% if user.is_authenticated %}
 <div class="container">
-    <div class="row">
-        <table class="table">
-            <thead class="thead-light">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Продукт</th>
-                <th scope="col">Количество</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for item in basket %}
-            <tr>
-                <th scope="row">{{ forloop.counter }}</th>
-                <td>{{ item.product }}</td>
-                <td>{{ item.quantity }}</td>
-            </tr>
-            {% endfor %}
-
-
-            </tbody>
-        </table>
+    <div class="basket_list">
+        {% include 'basketapp/includes/inc_basket_list.html' %}
     </div>
+
+    <button class="btn btn-round">
+        <a href="{% url 'main' %}">на главную</a>
+    </button>
+
 </div>
 {% endif %}
-</div>
+
 {% endblock %}

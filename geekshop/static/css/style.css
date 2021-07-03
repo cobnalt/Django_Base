@@ -82,7 +82,7 @@ html, body {
 }
 .basket {
 	display: block;
-	width: 23px;
+	width: 150px;
 	height: 23px;	
 	background-image: url(/static/img/basket.png);
 	position: absolute;
@@ -917,6 +917,10 @@ td:first-child {
 	float: left;
 	margin-right: 10px;
 }
+.slider-control > .block > a > img {
+    width: 100%;
+    height: auto;
+}
 .slider-control a .text {
 	display: none;
 	height: 70px;
@@ -1069,4 +1073,16 @@ td:first-child {
 }
 .related-products a:hover .text{
 	display: block;
+}
+.basket_record {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.basket_record img {
+    width: 70px;
+}
+.basket_record input {
+    width: 50px;
 }
