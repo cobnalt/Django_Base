@@ -26,6 +26,7 @@ urlpatterns = [
     path('auth/', include('authapp.urls', namespace='auth')),
     path('contact/', geekshop.contact, name='contact'),
     path('admin/', include('adminapp.urls', namespace='admin')),
+    path('', include('social_django.urls', namespace='social')),
 ]
 
 if settings.DEBUG:
