@@ -68,7 +68,6 @@ def products(request, pk=None, page=1):
             'category': category,
             'products': products_paginator,
             'title': title,
-            'basket': basket,
         }
         return render(request, 'mainapp/products_list.html', context=context)
 
@@ -78,7 +77,6 @@ def products(request, pk=None, page=1):
         'hot_product': hot_product,
         'same_products': same_products,
         'title': title,
-        'basket': basket,
     }
     return render(request, 'mainapp/products.html', context=context)
 
@@ -91,7 +89,6 @@ def product(request, pk):
         'main_menu': main_menu,
         'links_menu': ProductCategory.objects.all(),
         'product': get_object_or_404(Product, pk=pk),
-        'basket': get_basket(request.user),
     }
 
     return render(request, 'mainapp/product.html', content)
