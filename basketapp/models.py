@@ -9,6 +9,16 @@ class Basket(models.Model):
     quantity = models.PositiveIntegerField(verbose_name='количество', default=0)
     add_datetime = models.DateTimeField(verbose_name='время', auto_now_add=True)
 
+    # def save(self, *args, **kwargs):
+    #     if self.pk:
+    #         self.product.quantity -= self.quantity - self.__class__.get_item(self.pk).quantity
+    #     else:
+    #         self.product.quantity -= self.quantity
+    #     self.product.save()
+    #     super().save(*args, **kwargs)
+
+
+
     @property
     def product_cost(self):
         return self.product.price * self.quantity
@@ -16,15 +26,25 @@ class Basket(models.Model):
     @property
     def total_quantity(self):
         _items = Basket.objects.filter(user=self.user)
-        _totalquantity = sum(list(map(lambda x: x.quantity, _items)))
+        _totalquantity = sum([x.quantity for x in _items])
         return _totalquantity
 
     @property
     def total_cost(self):
         _items = Basket.objects.filter(user=self.user)
-        _totalcost = sum(list(map(lambda x: x.product_cost, _items)))
+        _totalcost = sum(x.product_cost for x in _items)
         return _totalcost
 
     @staticmethod
     def get_items(user):
         return Basket.objects.filter(user=user)
+
+    # def delete(self):
+    #     print('Удален')
+    #     self.product.quantity += self.quantity
+    #     self.product.save()
+    #     super(self.__class__, self).delete()
+
+    @staticmethod
+    def get_item(pk):
+        return Basket.objects.get(id=pk)
