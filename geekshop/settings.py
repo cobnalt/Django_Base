@@ -24,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-tj_+qsu)*mw&qbzzkqz_6ogq^2=g)=gu-j+6th1bmd#-d3rucq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'authapp',
     'basketapp',
     'adminapp',
+    'ordersapp',
     'social_django',
 ]
 
@@ -179,6 +180,6 @@ EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 SOCIAL_AUTH_VK_OAUTH2_KEY = env('VK_ID', None)
 SOCIAL_AUTH_VK_OAUTH2_SECRET = env('VK_SECRET', None)
 
-DOMAIN_NAME = 'http://localhost:8000'
+DOMAIN_NAME = 'http://127.0.0.1:8000/'
 
 EMAIL_USE_TLS = True

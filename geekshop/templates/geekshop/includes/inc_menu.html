@@ -6,16 +6,26 @@
 		{% endif %}">{{ link.name }}</a></li>
         {% endfor %}
         {% if user.is_authenticated %}
-            <li>
-                <a href="{% url 'auth:edit' %}">
+        <li>
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" data-toggle="dropdown">
                     {{ user.first_name|default:'Пользователь' }}
+                    <span class="caret"></span>
                 </a>
-            </li>
-        {% endif %}
-        {% if user.is_superuser %}
-            <li>
-              <a href="{% url 'admin:users' %}">админка</a>
-            </li>
+                <div class="dropdown-menu">
+
+                        <a href="{% url 'auth:edit' %}" class="dropdown-item">
+                            профиль
+                        </a>
+
+
+                        <a href="{% url 'ordersapp:orders_list' %}" class="dropdown-item">
+                            заказы
+                        </a>
+
+                </div>
+            </div>
+        </li>
         {% endif %}
         <li>
             {% if user.is_authenticated %}
@@ -34,5 +44,5 @@
     {% endif %}
   </span>
 
-</a>
+    </a>
 </div>
