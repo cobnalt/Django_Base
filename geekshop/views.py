@@ -19,10 +19,10 @@ main_products = [
 
 def main(request):
     title = 'главная'
-    main_products_base = Product.objects.all()[:4]
+    main_products_base = Product.objects.filter(is_active=True, category__is_active=True).select_related('category')[:4]
     basket = []
     if request.user.is_authenticated:
-        basket = Basket.objects.filter(user=request.user)
+        basket = Basket.objects.filter(user=request.user).select_related('user')
 
     context = {
         'main_menu': main_menu,
@@ -37,7 +37,7 @@ def contact(request):
     title = 'контакты'
     basket = []
     if request.user.is_authenticated:
-        basket = Basket.objects.filter(user=request.user)
+        basket = Basket.objects.filter(user=request.user).select_related('user')
     context = {
         'main_menu': main_menu,
         'title': title,
