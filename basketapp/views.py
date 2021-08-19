@@ -5,6 +5,7 @@ from django.template.loader import render_to_string
 from django.http import JsonResponse
 from basketapp.models import Basket
 from mainapp.models import Product
+from django.db.models import F
 
 main_menu = [
         {'href': 'main', 'name': 'домой'},
@@ -16,7 +17,7 @@ main_menu = [
 @login_required
 def basket(request):
     title = 'корзина'
-    basket_items = Basket.objects.filter(user=request.user).order_by('product__category')
+    basket_items = Basket.objects.filter(user=request.user).select_related().order_by('product__category')
 
     content = {
         'title': title,
@@ -39,7 +40,7 @@ def basket_add(request, pk):
     if not basket:
         basket = Basket(user=request.user, product=product)
 
-    basket.quantity += 1
+    basket.quantity = F('quantity') + 1
     basket.save()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
